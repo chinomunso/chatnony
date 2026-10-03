@@ -18,7 +18,7 @@ with st.sidebar:
     st.markdown("----")
 
 api_key=st.secrets["api_key"]
-model_name="gemini-2.5-flash"
+model_name="gemini-3-flash-preview"
 if "history" not in st.session_state:
     st.session_state.history=[]
 if "message" not in st.session_state:
