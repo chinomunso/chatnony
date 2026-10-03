@@ -24,7 +24,7 @@ if "history" not in st.session_state:
 if "message" not in st.session_state:
     st.session_state.message=[]
 if prompt:=st.chat_input("ASK NONY"):
-    timestamp=datetime.now().strftime("%Y-%M-%D %H:%M:%S")
+    timestamp=datetime.now().strftime("%y-%m-%d %H:%M:%S")
     st.session_state.message.append({
 
         "role":"user",
