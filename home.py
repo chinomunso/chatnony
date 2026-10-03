@@ -4,11 +4,6 @@ from google.genai import types
 from datetime import datetime
 
 
-st.title("NONY AI")
-with st.sidebar:
-    st.image("Asset 2.png",width=150)
-    st.title("NONY TECHS")
-    st.markdown("----")
 st.set_page_config(
 
     page_title="NONY-AI",
@@ -16,6 +11,12 @@ st.set_page_config(
     layout="wide",
    
 )
+st.title("NONY AI")
+with st.sidebar:
+    st.image("Asset 2.png",width=150)
+    st.title("NONY TECHS")
+    st.markdown("----")
+
 api_key=st.secrets["api_key"]
 model_name="gemini-3-flash-preview"
 if "history" not in st.session_state:
