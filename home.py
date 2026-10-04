@@ -31,7 +31,7 @@ with st.sidebar:
 current_date=datetime.now().strftime("%y-%m-%D")
 current_year=datetime.now().year
 
-system_instruction=f"you are NONY AI. Today is {current_date}.the current year is {current_year}.Always use{current_year} as current year, not 2023 or 2024"
+
 
 
 
@@ -68,14 +68,15 @@ if prompt:=st.chat_input("ASK NONY"):
 
                     "role":role,
                     "parts":[{'text':msg['contents']}]
-                }) 
+                })
+            system_instruction=f"you are NONY AI. Today is {current_date}.the current year is {current_year}.Always use{current_year} as current year, not 2023 or 2024"
             client=genai.Client(api_key=api_key)
             respond_stream=client.models.generate_content_stream(
 
                 model=model_name,
                 contents=contents,
                 config={"system_instruction":system_instruction}
-            )
+            )system_instruction
             respond_placeholder=st.empty()
             full_respond=""
             for chunk in respond_stream:
