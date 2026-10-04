@@ -29,10 +29,6 @@ with st.sidebar:
     st.markdown("----")
     st.caption(f"Total message:{len(st.session_state.get('message',[]))}")
 
-current_date=datetime.now().strftime("%y-%m-%D")
-current_year=datetime.now().year
-
-system_instruction=f"you are NONY AI. Today is {current_date}.the current year is {current_year}.Always use{current_year} as current year, not 2023 or 2024"
 
 api_key=st.secret(api_key)
 model_name="gemini-3-flash-preview"
