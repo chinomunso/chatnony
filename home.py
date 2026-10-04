@@ -76,7 +76,7 @@ if prompt:=st.chat_input("ASK NONY"):
                 model=model_name,
                 contents=contents,
                 config= types.GenerateContentConfig(system_instruction=system)
-            )system_instruction
+            )
             respond_placeholder=st.empty()
             full_respond=""
             for chunk in respond_stream:
