@@ -69,13 +69,13 @@ if prompt:=st.chat_input("ASK NONY"):
                     "role":role,
                     "parts":[{'text':msg['contents']}]
                 })
-            system_instruction=f"you are NONY AI. Today is {current_date}.the current year is {current_year}.Always use{current_year} as current year, not 2023 or 2024"
+            system=f"you are NONY AI. Today is {current_date}.the current year is {current_year}.Always use{current_year} as current year, not 2023 or 2024"
             client=genai.Client(api_key=api_key)
             respond_stream=client.models.generate_content_stream(
 
                 model=model_name,
                 contents=contents,
-                config= types.GenerateContentConfig(system_instruction=system_instruction)
+                config= types.GenerateContentConfig(system_instruction=system)
             )system_instruction
             respond_placeholder=st.empty()
             full_respond=""
