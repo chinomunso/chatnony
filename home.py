@@ -30,7 +30,7 @@ with st.sidebar:
     st.caption(f"Total message:{len(st.session_state.get('message',[]))}")
 
 
-api_key=st.secret(api_key)
+api_key=st.secrets["api_key"]
 model_name="gemini-3-flash-preview"
 if "history" not in st.session_state:
     st.session_state.history=[]
