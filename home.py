@@ -34,7 +34,7 @@ current_year=datetime.now().year
 
 system_instruction=f"you are NONY AI. Today is {current_date}.the current year is {current_year}.Always use{current_year} as current year, not 2023 or 2024"
 
-api_key="AQ.Ab8RN6L6xeBAeEiAs9jxab-LRsYrOZnncVy40-cfUzEDfhUTFw"
+api_key=st.secret(api_key)
 model_name="gemini-3-flash-preview"
 if "history" not in st.session_state:
     st.session_state.history=[]
