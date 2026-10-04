@@ -29,10 +29,6 @@ with st.sidebar:
     st.caption(f"Total chat:{len(st.session_state.get('message',[]))}")
 
 
-current_date=datetime.now().strftime("%y-%m-%D")
-current_year=datetime.now().year
-
-system_instruction=f"you are NONY AI. Today is {current_date}.the current year is {current_year}.Always use{current_year} as current year, not 2023 or 2024"
 
 
 api_key=st.secrets["api_key"]
