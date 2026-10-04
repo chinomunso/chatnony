@@ -74,7 +74,7 @@ if prompt:=st.chat_input("ASK NONY"):
             respond_stream=client.models.generate_content_stream(
 
                 model=model_name,
-                contents=contents,
+                contents=contents
                
             )
             respond_placeholder=st.empty()
