@@ -75,7 +75,7 @@ if prompt:=st.chat_input("ASK NONY"):
 
                 model=model_name,
                 contents=contents,
-                 config={"system_instruction":system_instruction}
+                 config=types.GenerateContentConfig(system_instruction=system_instruction)
             )
                
             )
