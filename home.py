@@ -13,9 +13,27 @@ st.set_page_config(
 )
 st.title("NONY AI")
 with st.sidebar:
-    st.image("Asset 2.png",width=150)
+    try:
+        st.image("Asset 2.png",width=150)
+    except:
+        pass
     st.title("NONY TECHS")
     st.markdown("----")
+    st.markdown("Chat History")
+
+    if st.button("🗑️Clear chat"):
+        st.session_state.message=[]
+        st.session_state.history=[]
+        st.rerun()
+    st.markdown("----")
+    st.caption(f"Total chat:{len(st.session_state.get('message',[]))}")
+
+
+current_date=datetime.now().strftime("%y-%m-%D")
+current_year=datetime.now().year
+
+system_instruction=f"you are NONY AI. Today is {current_date}.the current year is {current_year}.Always use{current_year} as current year, not 2023 or 2024"
+
 
 api_key=st.secrets["api_key"]
 model_name="gemini-3-flash-preview"
@@ -23,6 +41,15 @@ if "history" not in st.session_state:
     st.session_state.history=[]
 if "message" not in st.session_state:
     st.session_state.message=[]
+
+for ms  in st,session_state.message:
+   with st.chat_message(ms["role"]):
+       st.markdown(ms["contents"])
+       if "timestamp" in ms:
+           st.caption(f"*{timestamp}*")
+           
+       
+    
 if prompt:=st.chat_input("ASK NONY"):
     timestamp=datetime.now().strftime("%y-%m-%d %H:%M:%S")
     st.session_state.message.append({
@@ -48,7 +75,8 @@ if prompt:=st.chat_input("ASK NONY"):
             respond_stream=client.models.generate_content_stream(
 
                 model=model_name,
-                contents=contents
+                contents=contents,
+                system_config=system_instruction
             )
             respond_placeholder=st.empty()
             full_respond=""
@@ -64,6 +92,7 @@ if prompt:=st.chat_input("ASK NONY"):
                 "contents":full_respond,
                 "timestamp":response_timestamp
             })
+            st.caption(response_timestamp)
         
         except Exception as e:
             st.error(f"error:{str(e)}")
