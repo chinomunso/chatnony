@@ -49,7 +49,7 @@ for msg in st.session_state.message:
             st.caption(msg["timestamp"])
 
 if prompt:=st.chat_input("ASK NONY"):
-    timestamp=datetime.now().strftime("%Y-%M-%D %H:%M:%S")
+    timestamp=datetime.now().strftime("%y-%m-%D %H:%M:%S")
     st.session_state.message.append({
 
         "role":"user",
@@ -69,13 +69,13 @@ if prompt:=st.chat_input("ASK NONY"):
                     "role":role,
                     "parts":[{'text':msg['contents']}]
                 })
-            system=f"you are NONY AI. Today is {current_date}.the current year is {current_year}.Always use{current_year} as current year, not 2023 or 2024"
+            
             client=genai.Client(api_key=api_key)
             respond_stream=client.models.generate_content_stream(
 
                 model=model_name,
                 contents=contents,
-                config= types.GenerateContentConfig(system_instruction=system)
+               
             )
             respond_placeholder=st.empty()
             full_respond=""
