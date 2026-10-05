@@ -1,6 +1,5 @@
 import streamlit as st
-from google import genai
-from google.genai import types
+from openai import OpenAI
 from datetime import datetime
 
 st.set_page_config(
@@ -61,31 +60,32 @@ if prompt:=st.chat_input("ASK NONY"):
         st.caption(f"*{timestamp}*")
     with st.chat_message("assistant"):
         try:
-            contents=[] 
+            messages=[] 
             for msg in st.session_state.message:
-                role="model" if msg['role']=="assistant" else "user" 
-                contents.append({
+                role="assistant" if msg['role']=="assistant" else "user" 
+                messages.append({
 
                     "role":role,
-                    "parts":[{'text':msg['contents']}]
+                    "content":msg['contents']
                 })
-            system_instruction=f"you are NONY AI. Today is {current_date}.the current year is {current_year}.Always use{current_year} as current year, not 2023 or 2024"
-            client=genai.Client(api_key=api_key)
-            respond_stream=client.models.generate_content_stream(
+            model_name="Meta-Llama-3.3-70B-Instruct"
+            api_key=st.secrets["SAMBANOVA_API_KEY"]
+            client=OpenAI(api_key=api_key,base_url="https://api.sambanova.ai/v1")
+            respond_stream=client.chat.completions.create(
 
                 model=model_name,
-                contents=contents,
-                 config=types.GenerateContentConfig(system_instruction=system_instruction)
+                messages=messages,
+                stream=True
             
                
             )
             respond_placeholder=st.empty()
             full_respond=""
             for chunk in respond_stream:
-                if hasattr(chunk,'text') and chunk.text:
-                    full_respond+=chunk.text
+                if chunk.choice[0].delta.content:
+                    full_respond+=chunk.choice[0].delta.content
                     respond_placeholder.markdown(full_respond )
-            st.session_state.history.append({"role":"model","text":full_respond})
+            st.session_state.history.append({"role":"assistant","content":full_respond})
             respond_placeholder.markdown(full_respond)
             response_timestamp=datetime.now().strftime("%y-%m-%D  %H:%M:%S")
             st.session_state.message.append({
