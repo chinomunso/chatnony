@@ -34,7 +34,7 @@ current_year=datetime.now().year
 
 
 
-api_key=st.secrets["GROQ_API_KEY"]
+api_key=st.secrets["OPENROUTER_API_KEY"]
 model_name="gemini-3-flash-preview"
 if "history" not in st.session_state:
     st.session_state.history=[]
@@ -68,9 +68,13 @@ if prompt:=st.chat_input("ASK NONY"):
                     "role":role,
                     "content":msg['contents']
                 })
-            model_name="llama-3.3-70b-versatile"
-            api_key=st.secrets.get("GROQ_API_KEY","")
-            client=OpenAI(api_key=api_key,base_url="https://api.groq.com/openai/v1")
+            model_name="meta-llama//llama-3.3-70b-instruct:free"
+            api_key=st.secrets.get("OPENROUTER_API_KEY","")
+            if not api_key:
+                st.error("Add OPENROUTR_API_KEY to streamlit secrets")
+                st.stop()
+            client=OpenAI(api_key=api_key,base_url="https://openrouter.ai/api/v1",
+                          defult_header={"HTTP-Referer":"https://nonyai.streamlit.app","X-Title":"NONY AI"})
             respond_stream=client.chat.completions.create(
 
                 model=model_name,
