@@ -67,7 +67,7 @@ if prompt:=st.chat_input("ASK NONY"):
                     "role":role,
                     "content":msg['contents']
                 })
-            model_name="google/gemma-2-9b-it:free"
+            model_name="openrouter/free"
             api_key=st.secrets.get("OPENROUTER_API_KEY","")
             if not api_key:
                 st.error("Add OPENROUTR_API_KEY to streamlit secrets")
