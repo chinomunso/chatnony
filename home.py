@@ -74,7 +74,7 @@ if prompt:=st.chat_input("ASK NONY"):
                 st.error("Add OPENROUTR_API_KEY to streamlit secrets")
                 st.stop()
             client=OpenAI(api_key=api_key,base_url="https://openrouter.ai/api/v1",
-                          defult_header={"HTTP-Referer":"https://nonyai.streamlit.app","X-Title":"NONY AI"})
+                          default_headers={"HTTP-Referer":"https://nonyai.streamlit.app","X-Title":"NONY AI"})
             respond_stream=client.chat.completions.create(
 
                 model=model_name,
