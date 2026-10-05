@@ -35,7 +35,6 @@ current_year=datetime.now().year
 
 
 api_key=st.secrets["OPENROUTER_API_KEY"]
-model_name="gemini-3-flash-preview"
 if "history" not in st.session_state:
     st.session_state.history=[]
 if "message" not in st.session_state:
