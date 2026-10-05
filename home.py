@@ -69,7 +69,7 @@ if prompt:=st.chat_input("ASK NONY"):
                     "content":msg['contents']
                 })
             model_name="Meta-Llama-3.3-70B-Instruct"
-            api_key=st.secrets["SAMBANOVA_API_KEY"]
+            api_key=st.secrets.get["SAMBANOVA_API_KEY"]
             client=OpenAI(api_key=api_key,base_url="https://api.sambanova.ai/v1")
             respond_stream=client.chat.completions.create(
 
