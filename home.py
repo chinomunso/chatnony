@@ -34,7 +34,7 @@ current_year=datetime.now().year
 
 
 
-api_key=st.secrets["api_key"]
+api_key=st.secrets["SAMBANOVA_API_KEY"]
 model_name="gemini-3-flash-preview"
 if "history" not in st.session_state:
     st.session_state.history=[]
