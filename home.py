@@ -82,8 +82,8 @@ if prompt:=st.chat_input("ASK NONY"):
             respond_placeholder=st.empty()
             full_respond=""
             for chunk in respond_stream:
-                if chunk.choice[0].delta.content:
-                    full_respond+=chunk.choice[0].delta.content
+                if chunk.choices[0].delta.content:
+                    full_respond+=chunk.choices[0].delta.content
                     respond_placeholder.markdown(full_respond )
             st.session_state.history.append({"role":"assistant","content":full_respond})
             respond_placeholder.markdown(full_respond)
