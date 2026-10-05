@@ -68,7 +68,7 @@ if prompt:=st.chat_input("ASK NONY"):
                     "role":role,
                     "content":msg['contents']
                 })
-            model_name="meta-llama/llama-3.3-70b-instruct"
+            model_name="meta-llama/llama-3.3-70b-instruct:free"
             api_key=st.secrets.get("OPENROUTER_API_KEY","")
             if not api_key:
                 st.error("Add OPENROUTR_API_KEY to streamlit secrets")
