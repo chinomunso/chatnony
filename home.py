@@ -46,17 +46,19 @@ for msg in st.session_state.message:
         st.markdown(msg["contents"])
         if "timestamp" in msg:
             st.caption(msg["timestamp"])
-final_image=None
-if upload_image:
-    final_image=st.image.open(upl0ad_image)
-    st.image(final_image,width=300)
-if camera_image:
-    final_image=st.image.open(camera_image)
-    st.image(final_image,width=300)
 
     
 
-if prompt:=st.chat_input("ASK NONY",upload_image=st.upload_file("image",type["png","jpeg"]),camera_image=st.camera_input("photo")):
+if prompt:=st.chat_input("ASK NONY",upload_image=st.file_uploader("image",type=["png","jpeg","jpg","webp"]),camera_image=st.camera_input("photo")):
+   final_image=None
+    if upload_image:
+       final_image=image.open(upl0ad_image)
+       st.image(final_image,caption="preview")
+    if camera_image:
+       final_image=image.open(camera_image)
+       st.image(final_image,caption="preview")
+
+    
     timestamp=datetime.now().strftime("%y-%m-%D %H:%M:%S")
     st.session_state.message.append({
 
