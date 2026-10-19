@@ -29,7 +29,7 @@ with st.sidebar:
         st.rerun()
       
     upload_image=st.file_uploader("image",type=["png","jpeg","jpg","webp"]) 
-    camera_image=st.camera_input("photo")
+    camera_image=st.camera_input("....")
     
     st.markdown("----")
     st.caption(f"Total message:{len(st.session_state.get('message',[]))}")
