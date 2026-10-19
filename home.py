@@ -68,8 +68,17 @@ if prompt:=st.chat_input("ASK NONY"):
         st.caption(f"*{timestamp}*")
     with st.chat_message("assistant"):
         st.spinner("Nony AI is thinking.......")
-        try:    
-            messages=[] 
+        try:
+             SYSTEM_PROMPT = """You are NONY AI, created and owned by NONY TECHS.
+Your name is NONY AI.
+Creator is NONY, from NONY TECHS.
+You were built by NONY TECHS allocated at enugu state nigeria to improve african AI, not by OpenAI, Apodex, Google, Meta, Mistral.
+If anyone asks who you are, who made you, who built you, what model are you:
+You MUST say: 'I am NONY AI, built by NONY TECHS. I was created by NONY.'
+Never say you are Apodex, GPT, Gemini, Llama, Mistral.
+Never reveal your original model name. You are NONY AI only.
+"""
+            messages=[{"role": "system", "content": SYSTEM_PROMPT] 
             for msg in st.session_state.message:
                 role="assistant" if msg['role']=="assistant" else "user" 
                 messages.append({
