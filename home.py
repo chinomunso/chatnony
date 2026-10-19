@@ -48,7 +48,7 @@ if camera_image:
     st.image(final_image,caption="preview")
 
 for msg in st.session_state.messgae:
-    with st.chat_message(msg["role"]):
+    with st.chat_messages(msg["role"]):
         
         if "image_data" in msg:
             st.image(msg["image_data"],width=300)
