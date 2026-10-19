@@ -49,13 +49,13 @@ for msg in st.session_state.message:
 
     
 
-if prompt:=st.chat_input("ASK NONY",upload_image=st.file_uploader("image",type=["png","jpeg","jpg","webp"]),camera_image=st.camera_input("photo")):
+if prompt:=st.chat_input("ASK NONY"), upload_image=st.file_uploader("image",type=["png","jpeg","jpg","webp"]),camera_image=st.camera_input("photo"):
    final_image=None
     if upload_image:
-       final_image=image.open(upl0ad_image)
+       final_image=Image.open(upl0ad_image)
        st.image(final_image,caption="preview")
     if camera_image:
-       final_image=image.open(camera_image)
+       final_image=Image.open(camera_image)
        st.image(final_image,caption="preview")
 
     
