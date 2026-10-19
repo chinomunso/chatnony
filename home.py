@@ -51,7 +51,7 @@ if camera_image:
 
 def encode_image(image):
     buffered=BytesIO()
-    st.image.save(buffered,format="PNG")
+    img.save(buffered,format="PNG")
     return base64.b64encode(buffered.getvalue()).decode("utf-8")
 
 api_key=st.secrets["OPENROUTER_API_KEY"]
