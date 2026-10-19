@@ -110,7 +110,7 @@ if prompt:=st.chat_input("ASK NONY"):
                                     }
                                 ]
                         
-                    }]
+                    }],
     
                     max_tokens=500                )
         
