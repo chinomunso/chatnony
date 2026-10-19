@@ -77,7 +77,7 @@ if prompt:=st.chat_input("ASK NONY"):
                     "role":role,
                     "content":msg['contents']
                 })
-            model_name="gpt-4o-mini"
+            model_name="gemini-2.0-flash-exp"
             api_key=st.secrets.get("OPENROUTER_API_KEY","")
             if not api_key:
                 st.error("Add OPENROUTR_API_KEY to streamlit secrets")
