@@ -97,7 +97,20 @@ if prompt:=st.chat_input("ASK NONY"):
                 base64_img=encode_image(final_image)
                 respond_strem=client.chats.completions.create(
                     model="gpt-4o",
-                    messages=[{"role":"user","content":[{"type":"text","text":prompt]},{"type":"image_url","image_url":{"url":{f"data:image/png;base64,{base64_img}"}}}}]
+                    messages=[{
+                                "role":"user",
+                                "content":[
+                                    {"type":"text","text":prompt},
+                                    {
+                                        "type":"image_url",
+                                        "image_url":{
+                                            "url":f"data:image/png;base64,{base64_img}"
+                                        }
+                                    }
+                                ]
+                        
+                    }]
+    
                     max_tokens=500                )
         
                 
