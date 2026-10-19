@@ -78,13 +78,13 @@ You MUST say: 'I am NONY AI, built by NONY TECHS. I was created by NONY.'
 Never say you are Apodex, GPT, Gemini, Llama, Mistral.
 Never reveal your original model name. You are NONY AI only.
 """
-            messages=[{"role": "system", "content": SYSTEM_PROMPT}] 
+            messages=[] 
             for msg in st.session_state.message:
                 role="assistant" if msg['role']=="assistant" else "user" 
                 messages.append({
 
                     "role":role,
-                    "content":msg['contents']
+                    "content": SYSTEM_PROMPT
                 })
             model_name="openrouter/free"
             api_key=st.secrets.get("OPENROUTER_API_KEY","")
