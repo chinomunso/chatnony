@@ -70,7 +70,7 @@ for msg in st.session_state.message:
             
 for msg in st.session_state.message:
     with st.chat_message(msg["role"]):
-        st.markdown(msg["contents"])
+        st.markdown(msg["content"])
         if "timestamp" in msg:
             st.caption(msg["timestamp"])
 
