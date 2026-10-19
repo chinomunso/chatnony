@@ -48,8 +48,9 @@ for msg in st.session_state.message:
             st.caption(msg["timestamp"])
 
     
-
-if prompt:=st.chat_input("ASK NONY")upload_image=st.file_uploader("image",type=["png","jpeg","jpg","webp"]),camera_image=st.camera_input("photo"):
+upload_image=st.file_uploader("image",type=["png","jpeg","jpg","webp"]) 
+camera_image=st.camera_input("photo")
+if prompt:=st.chat_input("ASK NONY"):
    final_image=None
     if upload_image:
        final_image=Image.open(upl0ad_image)
