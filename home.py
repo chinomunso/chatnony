@@ -49,7 +49,7 @@ if "message" not in st.session_state:
             
 for msg in st.session_state.message:
     with st.chat_message(msg["role"]):
-        st.markdown(msg["content"])
+        st.markdown(msg["contents"])
         if "timestamp" in msg:
             st.caption(msg["timestamp"])
 
@@ -77,7 +77,7 @@ if prompt:=st.chat_input("ASK NONY"):
                     "role":role,
                     "content":msg['contents']
                 })
-            model_name="gemini-2.0-flash-exp"
+            model_name="openrouter/auto"
             api_key=st.secrets.get("OPENROUTER_API_KEY","")
             if not api_key:
                 st.error("Add OPENROUTR_API_KEY to streamlit secrets")
