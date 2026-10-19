@@ -67,7 +67,7 @@ for msg in st.session_state.message:
     with st.chat_message(msg["role"]):
         if "image_data" in msg:
             st.image(msg["image_data"],width=300)
-        st.markdown(msg["contents"])
+        st.markdown(msg["content"])
         if "timestamp" in msg:
             st.caption(msg["timestamp"])
 
