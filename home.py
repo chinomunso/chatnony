@@ -77,7 +77,7 @@ if prompt:=st.chat_input("ASK NONY"):
         st.spinner("Nony AI is thinking.......")
         try:
            
-            messages=[] 
+            messages=[{"role": "system", "content": SYSTEM_PROMPT}] 
             for msg in st.session_state.message:
                 role="assistant" if msg['role']=="assistant" else "user" 
                 messages.append({
