@@ -24,7 +24,16 @@ with st.sidebar:
         st.session_state.message=[]
         st.session_state.history=[]
         st.rerun()
-    
+      
+    upload_image=st.file_uploader("image",type=["png","jpeg","jpg","webp"]) 
+    camera_image=st.camera_input("photo")
+    final_image=None
+    if upload_image:
+       final_image=Image.open(upl0ad_image)
+       st.image(final_image,caption="preview")
+    if camera_image:
+       final_image=image.open(camera_image)
+       st.image(final_image,caption="preview")  
     st.markdown("----")
     st.caption(f"Total message:{len(st.session_state.get('message',[]))}")
 current_date=datetime.now().strftime("%y-%m-%D")
@@ -47,16 +56,7 @@ for msg in st.session_state.message:
         if "timestamp" in msg:
             st.caption(msg["timestamp"])
 
-    
-upload_image=st.file_uploader("image",type=["png","jpeg","jpg","webp"]) 
-camera_image=st.camera_input("photo")
-final_image=None
-if upload_image:
-    final_image=Image.open(upl0ad_image)
-    st.image(final_image,caption="preview")
-if camera_image:
-     final_image=image.open(camera_image)
-     st.image(final_image,caption="preview")
+
 
 if prompt:=st.chat_input("ASK NONY"):
   
