@@ -54,7 +54,7 @@ final_image=None
 if upload_image:
     final_image=Image.open(upl0ad_image)
     st.image(final_image,caption="preview")
- if camera_image:
+if camera_image:
      final_image=Image.open(camera_image)
      st.image(final_image,caption="preview")
 
