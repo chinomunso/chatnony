@@ -83,7 +83,7 @@ if prompt:=st.chat_input("ASK NONY"):
                 messages.append({
 
                     "role":role,
-                    "content": msg["contents"]
+                    "content":SYSTEM_PROMPT
                 })
             model_name="openrouter/free"
             api_key=st.secrets.get("OPENROUTER_API_KEY","")
