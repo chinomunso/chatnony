@@ -45,7 +45,19 @@ if upload_image:
     st.image(final_image,caption="preview")
 if camera_image:
     final_image=Image.open(camera_image)
-    st.image(final_image,caption="preview")  
+    st.image(final_image,caption="preview")
+
+for msg in st.session_state.messgae:
+    with st.chat_message(msg["role"])
+    if "image_data" in msg:
+        st.image(msg["image_data"],width=300)
+        st.markdown(msg["content"])
+
+def encode_image(image):
+    buffered=BytesIO()
+    st.image.save(buffered,format="PNG")
+    return base64.b64encode(buffered.getvalue()).decode("utf-8")
+
 api_key=st.secrets["OPENROUTER_API_KEY"]
 if "history" not in st.session_state:
     st.session_state.history=[]
@@ -62,8 +74,6 @@ for msg in st.session_state.message:
 
 
 if prompt:=st.chat_input("ASK NONY"):
-  
-    
     timestamp=datetime.now().strftime("%y-%m-%D %H:%M:%S")
     st.session_state.message.append({
 
@@ -72,10 +82,25 @@ if prompt:=st.chat_input("ASK NONY"):
         "timestamp":timestamp
     })
     with st.chat_message("user"):
+        if final_image:
+            st.image(final_image,width=250)
         st.markdown(prompt)
+        user_content={"role":"user","content":prompt}
+        if final_image:
+            user_content["image_data"]=final_image
+            st.session_state.message.append(user_content)
         st.caption(f"*{timestamp}*")
     with st.chat_message("assistant"):
+        st.spinner("Nony AI is thinking.......")
         try:
+            if final_image:
+                base64_img=encode_image(final_image)
+                respond_strem=client.chats.completions.create(
+                    model="gpt-4o",
+                    messages=[{"role":"user","content":[{"type":"text","text":prompt]},{"type":"image_url","image_url":{"url":{f"data:image/png;base64,{base64_img}"}}}}]
+                    max_tokens=500                )
+        
+                
             messages=[] 
             for msg in st.session_state.message:
                 role="assistant" if msg['role']=="assistant" else "user" 
