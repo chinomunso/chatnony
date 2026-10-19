@@ -29,7 +29,7 @@ with st.sidebar:
     camera_image=st.camera_input("photo")
     final_image=None
     if upload_image:
-       final_image=image.open(upl0ad_image)
+       final_image=Image.open(upload_image)
        st.image(final_image,caption="preview")
     if camera_image:
        final_image=image.open(camera_image)
