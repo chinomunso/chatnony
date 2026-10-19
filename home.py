@@ -52,7 +52,7 @@ for msg in st.session_state.messgae:
         
         if "image_data" in msg:
             st.image(msg["image_data"],width=300)
-             st.markdown(msg["content"])
+            st.markdown(msg["content"])
 
 def encode_image(image):
     buffered=BytesIO()
