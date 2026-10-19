@@ -40,13 +40,23 @@ if "history" not in st.session_state:
 if "message" not in st.session_state:
     st.session_state.message=[]
 
+
 for msg in st.session_state.message:
     with st.chat_message(msg["role"]):
         st.markdown(msg["contents"])
         if "timestamp" in msg:
             st.caption(msg["timestamp"])
+final_image=None
+if upload_image:
+    final_image=st.image.open(upl0ad_image)
+    st.image(final_image,width=300)
+if camera_image:
+    final_image=st.image.open(camera_image)
+    st.image(final_image,width=300)
 
-if prompt:=st.chat_input("ASK NONY"):
+    
+
+if prompt:=st.chat_input("ASK NONY",upload_image=st.upload_file("image",type["png","jpeg"]),camera_image=st.camera_input("photo")):
     timestamp=datetime.now().strftime("%y-%m-%D %H:%M:%S")
     st.session_state.message.append({
 
