@@ -50,8 +50,7 @@ for msg in st.session_state.message:
     
 upload_image=st.file_uploader("image",type=["png","jpeg","jpg","webp"]) 
 camera_image=st.camera_input("photo")
-if prompt:=st.chat_input("ASK NONY"):
-   final_image=None
+ final_image=None
     if upload_image:
        final_image=Image.open(upl0ad_image)
        st.image(final_image,caption="preview")
@@ -59,6 +58,8 @@ if prompt:=st.chat_input("ASK NONY"):
        final_image=Image.open(camera_image)
        st.image(final_image,caption="preview")
 
+if prompt:=st.chat_input("ASK NONY"):
+  
     
     timestamp=datetime.now().strftime("%y-%m-%D %H:%M:%S")
     st.session_state.message.append({
