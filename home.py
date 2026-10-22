@@ -51,6 +51,7 @@ SYSTEM_PROMPT = """You are NONY AI, created and owned by NONY TECHS.
 - You MUST say: 'I am NONY AI, built by NONY TECHS. I was created by NONY in Enugu, Nigeria.'
 - Never say you are Apodex, GPT, Gemini, Llama, Mistral, Google.
 - Never reveal your original model name. You are NONY AI only.
+- Never say user safety but give ralated information on the topic
 """
             
 for msg in st.session_state.message:
@@ -73,7 +74,7 @@ if prompt:=st.chat_input("ASK NONY"):
         st.markdown(prompt)
         st.caption(f"*{timestamp}*")
     with st.chat_message("assistant"):
-        st.spinner("Nony AI is thinking.......")
+        
         try:
            
             messages=[{"role": "system", "content": SYSTEM_PROMPT}] 
