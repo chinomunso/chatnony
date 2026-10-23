@@ -107,7 +107,7 @@ if prompt:=st.chat_input("ASK NONY"):
                     full_respond+=chunk.choices[0].delta.content
                     respond_placeholder.markdown(full_respond )
                     clean_live = re.sub(r"User Safety:.*?safe|Response Safety:.*?safe", "", full_response, flags=re.IGNORECASE).strip()
-                    respond_placeholder.markdown(clean_live)
+                    placeholder.markdown(clean_live)
 
             
             final_clean = re.sub(r"User Safety:.*?safe|Response Safety:.*?safe", "", full_response, flags=re.IGNORECASE).strip()
