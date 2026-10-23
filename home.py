@@ -1,6 +1,7 @@
 import streamlit as st
 from openai import OpenAI
 from datetime import datetime
+import re
 
 
 
@@ -106,7 +107,12 @@ if prompt:=st.chat_input("ASK NONY"):
                 if chunk.choices[0].delta.content:
                     full_respond+=chunk.choices[0].delta.content
                     respond_placeholder.markdown(full_respond )
-                    
+                    clean_live = re.sub(r"User Safety:.*?safe|Response Safety:.*?safe", "", full_respond, flags=re.IGNORECASE).strip()
+                    respond_placeholder.markdown(clean_live)
+
+            
+            final_clean = re.sub(r"User Safety:.*?safe|Response Safety:.*?safe", "", full_respond, flags=re.IGNORECASE).strip()
+            respond_placeholder.markdown(final_clean)
 
             st.session_state.history.append({"role":"assistant","content":full_respond})
             respond_placeholder.markdown(full_respond)
