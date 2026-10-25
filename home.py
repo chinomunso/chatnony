@@ -75,7 +75,7 @@ if prompt:=st.chat_input("ASK NONY"):
         st.markdown(prompt)
         st.caption(f"*{timestamp}*")
     with st.chat_message("assistant"):
-        
+        With st.spinner("NonyAi is thinking......"):
         try:
            
             messages=[{"role": "system", "content": SYSTEM_PROMPT}] 
