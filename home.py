@@ -75,15 +75,16 @@ if prompt:=st.chat_input("ASK NONY"):
         st.markdown(prompt)
         st.caption(f"*{timestamp}*")
     with st.chat_message("assistant"):
+        with st.spinner("NonyAi is thinking......."):
+            
         
-        try:
-            with st.spinner("NonyAi is thinking......"):
+            try:
+            
            
-            messages=[{"role": "system", "content": SYSTEM_PROMPT}] 
-            for msg in st.session_state.message:
-                role="assistant" if msg['role']=="assistant" else "user" 
-                messages.append({
-
+                messages=[{"role": "system", "content": SYSTEM_PROMPT}] 
+                for msg in st.session_state.message:
+                    role="assistant" if msg['role']=="assistant" else "user" 
+                    messages.append({
                     "role":role,
                     "content":msg["contents"]
                 })
