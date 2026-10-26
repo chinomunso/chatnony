@@ -76,7 +76,7 @@ if prompt:=st.chat_input("ASK NONY"):
         st.caption(f"*{timestamp}*")
     with st.chat_message("assistant"):
         
-          try:
+        try:
             
            
              messages=[{"role": "system", "content": SYSTEM_PROMPT}] 
