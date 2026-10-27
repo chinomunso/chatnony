@@ -115,7 +115,8 @@ for msg in st.session_state.message:
 
 
 if prompt:=st.chat_input("ASK NONY"):
-    timestamp=datetime.now().strftime("%y-%m-%D %H:%M:%S")
+    timestamp = datetime.now().strftime("%d/%m/%Y %I:%M %p")
+
     st.session_state.message.append({
 
         "role":"user",
