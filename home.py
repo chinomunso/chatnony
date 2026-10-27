@@ -116,7 +116,7 @@ for msg in st.session_state.message:
 
 
 if prompt:=st.chat_input("ASK NONY"):
-    timestamp = datetime.now(ZoneInfo("Africa/Lagos").strftime("%d/%m/%Y %I:%M %p")
+    timestamp = datetime.now(ZoneInfo("Africa/Lagos")).strftime("%d/%m/%Y %I:%M %p")
 
     st.session_state.message.append({
 
