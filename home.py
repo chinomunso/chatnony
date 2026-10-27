@@ -39,7 +39,7 @@ st.markdown("""
     /* USER BUBBLE - rounded like WhatsApp */
     [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
         background-color: #DCF8C6 !important; /* light green for user */
-        border-radius: 18px 18px 0px 18px !important; /* user side border radius */
+        border-radius: 20px 20px 20px 5px !important; /* user side border radius */
         border: 1px solid #e0e0e0;
         margin-left: 40px !important;
         margin-bottom: 10px;
@@ -49,7 +49,7 @@ st.markdown("""
     /* ASSISTANT BUBBLE - rounded */
     [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
         background-color: #FFFFFF !important; /* white for AI */
-        border-radius: 18px 18px 18px 0px !important; /* assistant side radius */
+        border-radius: 20px 20px 20px 5px !important; /* assistant side radius */
         border: 1px solid #e0e0e0;
         margin-right: 40px !important;
         margin-bottom: 10px;
