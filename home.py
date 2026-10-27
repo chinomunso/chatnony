@@ -28,7 +28,41 @@ st.markdown("""
         gap: 0rem !important;
     }
 </style>
+""", unsafe_allow_html=True) 
+st.markdown("""
+<style>
+    /* HIDE AVATAR */
+    [data-testid="stChatMessageAvatar"] {
+        display: none !important;
+    }
+
+    /* USER BUBBLE - rounded like WhatsApp */
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+        background-color: #DCF8C6 !important; /* light green for user */
+        border-radius: 18px 18px 0px 18px !important; /* user side border radius */
+        border: 1px solid #e0e0e0;
+        margin-left: 40px !important;
+        margin-bottom: 10px;
+        box-shadow: 0px 1px 2px rgba(0,0,0,0.1);
+    }
+    
+    /* ASSISTANT BUBBLE - rounded */
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
+        background-color: #FFFFFF !important; /* white for AI */
+        border-radius: 18px 18px 18px 0px !important; /* assistant side radius */
+        border: 1px solid #e0e0e0;
+        margin-right: 40px !important;
+        margin-bottom: 10px;
+        box-shadow: 0px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    /* Make text padding inside bubble */
+    [data-testid="stChatMessage"] div[data-testid="stMarkdownContainer"] {
+        padding: 5px 10px;
+    }
+</style>
 """, unsafe_allow_html=True)
+
 
 st.title("NONY AI")
 with st.sidebar:
