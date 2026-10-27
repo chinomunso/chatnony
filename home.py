@@ -10,8 +10,25 @@ st.set_page_config(
     page_title="NONY-AI",
     page_icon="Asset 2.png",
     layout="wide",
-   
-)
+
+) 
+st.markdown("""
+<style>
+    [data-testid="stChatMessageAvatar"] {
+        display: none !important;
+    }
+    [data-testid="stChatMessageAvatarUser"] {
+        display: none !important;
+    }
+    [data-testid="stChatMessageAvatarAssistant"] {
+        display: none !important;
+    }
+    /* Remove the space where avatar was */
+    [data-testid="stChatMessage"] {
+        gap: 0rem !important;
+    }
+</style>
+""", unsafe_allow_html=True)
 
 st.title("NONY AI")
 with st.sidebar:
