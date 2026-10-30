@@ -169,7 +169,7 @@ if prompt:=st.chat_input("ASK NONY"):
 
             st.session_state.history.append({"role":"assistant","content":full_respond})
             respond_placeholder.markdown(full_respond)
-            response_timestamp=datetime.now().strftime("%y-%m-%D  %H:%M:%S")
+            response_timestamp= datetime.now(ZoneInfo("Africa/Lagos")).strftime("%d/%m/%Y %I:%M %p")
             st.session_state.message.append({
                 "role":"assistant",
                 "contents":full_respond,
