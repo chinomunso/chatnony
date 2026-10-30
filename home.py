@@ -128,55 +128,55 @@ if prompt:=st.chat_input("ASK NONY"):
         st.markdown(prompt)
         st.caption(f"*{timestamp}*")
     with st.chat_message("assistant"):
-    
-        with st.spinner("nonyai is thinking......."):
         
-              try:
+        try:
             
            
-                  messages=[{"role": "system", "content": SYSTEM_PROMPT}] 
-                  for msg in st.session_state.message:
-                      role="assistant" if msg['role']=="assistant" else "user" 
-                      messages.append({
-                         "role":role,
-                        "content":msg["contents"]
-                         })
-                 model_name = "openrouter/free"
-                 api_key=st.secrets.get("OPENROUTER_API_KEY","")
-                 if not api_key:
-                    st.error("Add OPENROUTR_API_KEY to streamlit secrets")
-                    st.stop()
-                 client=OpenAI(api_key=api_key,base_url="https://openrouter.ai/api/v1",
-                 default_headers={"HTTP-Referer":"https://nonyai.streamlit.app","X-Title":"NONY AI"})
-                 respond_stream=client.chat.completions.create(
+            messages=[{"role": "system", "content": SYSTEM_PROMPT}] 
+            for msg in st.session_state.message:
+                 role="assistant" if msg['role']=="assistant" else "user" 
+                 messages.append({
+                    "role":role,
+                    "content":msg["contents"]
+                })
+            model_name = "openrouter/free"
+            api_key=st.secrets.get("OPENROUTER_API_KEY","")
+            if not api_key:
+                st.error("Add OPENROUTR_API_KEY to streamlit secrets")
+                st.stop()
+            client=OpenAI(api_key=api_key,base_url="https://openrouter.ai/api/v1",
+                          default_headers={"HTTP-Referer":"https://nonyai.streamlit.app","X-Title":"NONY AI"})
+            respond_stream=client.chat.completions.create(
 
-                          model=model_name,
-                          messages=messages,
-                           stream=True
+                model=model_name,
+                messages=messages,
+                stream=True
             
                
-                                      )
-                 respond_placeholder=st.empty()
-                 full_respond=""
-                 for chunk in respond_stream:
-                     if chunk.choices[0].delta.content:
-                     full_respond+=chunk.choices[0].delta.content
-                     respond_placeholder.markdown(full_respond )
-                     clean_live = re.sub(r"User Safety:.*?safe|Response Safety:.*?safe", "", full_respond, flags=re.IGNORECASE).strip()
-                     respond_placeholder.markdown(clean_live)
+            )
+            respond_placeholder=st.empty()
+            full_respond=""
+            for chunk in respond_stream:
+                if chunk.choices[0].delta.content:
+                    full_respond+=chunk.choices[0].delta.content
+                    respond_placeholder.markdown(full_respond )
+                    clean_live = re.sub(r"User Safety:.*?safe|Response Safety:.*?safe", "", full_respond, flags=re.IGNORECASE).strip()
+                    respond_placeholder.markdown(clean_live)
 
             
-               final_clean = re.sub(r"User Safety:.*?safe|Response Safety:.*?safe", "", full_respond, flags=re.IGNORECASE).strip()
-               respond_placeholder.markdown(final_clean)
+            final_clean = re.sub(r"User Safety:.*?safe|Response Safety:.*?safe", "", full_respond, flags=re.IGNORECASE).strip()
+            respond_placeholder.markdown(final_clean)
 
-               st.session_state.history.append({"role":"assistant","content":full_respond})
-               respond_placeholder.markdown(full_respond)
-               response_timestamp= datetime.now(ZoneInfo("Africa/Lagos")).strftime("%d/%m/%Y %I:%M %p")
-               st.session_state.message.append({
-                     "role":"assistant",
-                      "contents":full_respond,
-                      "timestamp":response_timestamp
-                       })
+            st.session_state.history.append({"role":"assistant","content":full_respond})
+            respond_placeholder.markdown(full_respond)
+            response_timestamp= datetime.now(ZoneInfo("Africa/Lagos")).strftime("%d/%m/%Y %I:%M %p")
+            st.session_state.message.append({
+                "role":"assistant",
+                "contents":full_respond,
+                "timestamp":response_timestamp
+            })
+    
+        
         except Exception as e:
             st.error(f"error:{str(e)}")
     
